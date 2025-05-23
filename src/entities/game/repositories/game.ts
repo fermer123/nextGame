@@ -1,12 +1,12 @@
 import {prisma} from '@/shared/lib/db';
 import {TGame, TGameIdle, TGameOver} from '../domain';
-import {Game, User} from '@/generated/prisma';
+import {Game, Prisma, User} from '@/generated/prisma';
 import {z} from 'zod';
 
 const fieldSchema = z.array(z.union([z.string(), z.null()]));
 
 function dbGameToGameEntity(
-  game: Game & {players: User[]; winner?: User},
+  game: Game & {players: User[]; winner: User | null},
 ): TGame {
   const [creator] = game.players;
   if (!creator) {
@@ -43,8 +43,9 @@ function dbGameToGameEntity(
   }
 }
 
-async function gameList(): Promise<TGame[]> {
+async function gameList(where?: Prisma.GameWhereInput): Promise<TGame[]> {
   const games = await prisma?.game?.findMany({
+    where,
     include: {
       winner: true,
       players: true,
