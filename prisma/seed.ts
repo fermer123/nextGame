@@ -10,6 +10,13 @@ async function main() {
       rating: 1000,
     },
   });
+  const user2 = await prisma.user.create({
+    data: {
+      login: 'user2',
+      passwordHash: 'asdasdp[b fdgb1RT@#].>:A:',
+      rating: 100,
+    },
+  });
 
   await prisma?.game?.create({
     data: {
@@ -22,11 +29,17 @@ async function main() {
       },
     },
   });
-  // await prisma?.game?.create({
-  //   data: {
-  //     name: 'game-2',
-  //   },
-  // });
+  await prisma?.game?.create({
+    data: {
+      field: Array(9).fill(0),
+      status: 'idle',
+      players: {
+        connect: {
+          id: user2?.id,
+        },
+      },
+    },
+  });
 }
 main()
   .then(async () => {
