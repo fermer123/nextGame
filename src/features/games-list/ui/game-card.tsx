@@ -14,7 +14,7 @@ export function GameCard({
 }: {
   login: string;
   rating: number;
-  actions: ReactNode;
+  actions?: ReactNode;
 }) {
   return (
     <Card>

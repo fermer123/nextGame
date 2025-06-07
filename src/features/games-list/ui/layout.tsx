@@ -5,7 +5,7 @@ export function Layout({
   actions,
 }: {
   children: ReactNode;
-  actions: ReactNode;
+  actions?: ReactNode;
 }) {
   return (
     <div className='flex flex-col gap-4'>
