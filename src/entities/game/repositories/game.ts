@@ -19,10 +19,9 @@ function dbGameToGameEntity(
     case 'idle':
       return {
         id: game?.id,
-        // field: fieldSchema?.parse(game?.field) || [],
+        field: fieldSchema?.parse(game?.field) || [],
         creator,
         status: game?.status,
-        field: [],
       } satisfies TGameIdle;
     case 'inProgress':
     case 'gameOverDraw':
@@ -64,7 +63,7 @@ async function createGame(game: TGame): Promise<TGame> {
     data: {
       status: game?.status,
       id: game?.id,
-      field: Array(9).fill(null),
+      field: Array(9).fill(0),
       players: {
         connect: {
           id: game?.id,

@@ -1,7 +1,7 @@
 'use client';
 
 import {Button} from '@/shared/ui/button';
-import {FC} from 'react';
+import {FC, startTransition} from 'react';
 import {createGameAction} from '../actions/create-game';
 import {mapLeft, right} from '@/shared/lib/either';
 import {useActionState} from '@/shared/lib/react';
@@ -15,7 +15,7 @@ const CreateButton: FC = () => {
   return (
     <Button
       disabled={isPending}
-      onClick={action}
+      onClick={() => startTransition(action)}
       error={mapLeft(
         state,
         (e) =>

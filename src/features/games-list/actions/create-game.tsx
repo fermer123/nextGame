@@ -10,5 +10,6 @@ export const createGameAction = async () => {
     return left('user-not-found');
   }
   const gameResult = createGame(user);
+
   return gameResult;
 };

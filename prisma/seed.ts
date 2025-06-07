@@ -20,7 +20,7 @@ async function main() {
 
   await prisma?.game?.create({
     data: {
-      field: Array(9).fill(0),
+      field: Array(9).fill('0'),
       status: 'idle',
       players: {
         connect: {
@@ -32,7 +32,7 @@ async function main() {
 
   await prisma?.game?.create({
     data: {
-      field: Array(9).fill(0),
+      field: Array(9).fill('0'),
       status: 'idle',
       players: {
         connect: {
