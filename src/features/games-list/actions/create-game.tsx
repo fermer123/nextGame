@@ -2,14 +2,12 @@
 
 import {createGame} from '@/entities/game/server';
 import {prisma} from '@/shared/lib/db';
+import {left} from '@/shared/lib/either';
 
 export const createGameAction = async () => {
   const user = await prisma?.user?.findFirst();
   if (!user) {
-    return {
-      type: 'error',
-      value: 'user-not-found',
-    } as const;
+    return left('user-not-found');
   }
   const gameResult = createGame(user);
   return gameResult;

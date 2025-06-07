@@ -1,7 +1,7 @@
 import cuid from 'cuid';
 import {TPlayer} from '../domain';
 import {gameRepository} from '../repositories/game';
-import {left} from '@/shared/lib/either';
+import {left, right} from '@/shared/lib/either';
 
 export async function createGame(player: TPlayer) {
   const playerGames = await gameRepository.gameList({
@@ -24,8 +24,5 @@ export async function createGame(player: TPlayer) {
     field: Array(9).fill(null),
   });
 
-  return {
-    type: 'success',
-    game: createdGame,
-  } as const;
+  return right(createdGame);
 }
