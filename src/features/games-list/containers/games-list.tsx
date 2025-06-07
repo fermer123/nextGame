@@ -1,11 +1,12 @@
 import {getIdleGames} from '@/entities/game/server';
 import {Layout} from '../ui/layout';
 import {GameCard} from '../ui/game-card';
+import CreateButton from '../ui/create-button';
 
 const GamesList = async () => {
   const games = await getIdleGames();
   return (
-    <Layout>
+    <Layout actions={<CreateButton action={() => {}} />}>
       {games?.map((el) => (
         <GameCard
           key={el?.id}

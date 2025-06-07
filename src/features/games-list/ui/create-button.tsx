@@ -1,7 +1,12 @@
-import {FC, PropsWithChildren} from 'react';
+import {Button} from '@/shared/ui/button';
+import {FC} from 'react';
 
-const CreateButton: FC<PropsWithChildren> = ({children}) => {
-  return <div className='grid grid-cols-2 gap-4'>{children}</div>;
+interface IProps {
+  action: () => Promise<void>;
+}
+
+const CreateButton: FC<IProps> = ({action}) => {
+  return <Button>Создать игру</Button>;
 };
 
 export default CreateButton;

@@ -24,5 +24,8 @@ export async function createGame(player: TPlayer) {
     field: Array(9).fill(null),
   });
 
-  return createdGame;
+  return {
+    type: 'success',
+    game: createdGame,
+  } as const;
 }
