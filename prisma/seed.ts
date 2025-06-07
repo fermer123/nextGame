@@ -29,6 +29,7 @@ async function main() {
       },
     },
   });
+
   await prisma?.game?.create({
     data: {
       field: Array(9).fill(0),
@@ -41,6 +42,7 @@ async function main() {
     },
   });
 }
+
 main()
   .then(async () => {
     await prisma.$disconnect();

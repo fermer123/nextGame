@@ -3,7 +3,7 @@
 import {Button} from '@/shared/ui/button';
 import {FC} from 'react';
 import {createGameAction} from '../actions/create-game';
-import {matchEither, right} from '@/shared/lib/either';
+import {mapLeft, right} from '@/shared/lib/either';
 import {useActionState} from '@/shared/lib/react';
 
 const CreateButton: FC = () => {
@@ -13,19 +13,19 @@ const CreateButton: FC = () => {
   );
 
   return (
-    <div className='flex flex-col gap-1'>
-      <Button disabled={isPending} onClick={action}>
-        Создать игру
-      </Button>
-      {matchEither(state, {
-        right: () => null,
-        left: (e) =>
+    <Button
+      disabled={isPending}
+      onClick={action}
+      error={mapLeft(
+        state,
+        (e) =>
           ({
             ['can-create-only-one-game']: 'Только одна игра',
             ['user-not-found']: 'Нет пользователя',
           })[e],
-      })}
-    </div>
+      )}>
+      Создать игру
+    </Button>
   );
 };
 

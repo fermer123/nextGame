@@ -3,10 +3,10 @@ import {Layout} from '../ui/layout';
 import {GameCard} from '../ui/game-card';
 import CreateButton from './create-button';
 
-const GamesList = async () => {
+export const GamesList = async () => {
   const games = await getIdleGames();
   return (
-    <Layout actions={<CreateButton action={create} />}>
+    <Layout actions={<CreateButton />}>
       {games?.map((el) => (
         <GameCard
           key={el?.id}
@@ -17,5 +17,3 @@ const GamesList = async () => {
     </Layout>
   );
 };
-
-export default GamesList;
